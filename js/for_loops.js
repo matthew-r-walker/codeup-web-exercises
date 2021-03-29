@@ -1,3 +1,5 @@
+"use strict";
+
 showMultiplicationTable(7);
 
 function showMultiplicationTable(num) {
