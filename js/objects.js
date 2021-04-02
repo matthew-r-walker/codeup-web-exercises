@@ -1,4 +1,4 @@
-(function() {
+// (function() {
     "use strict";
 
     /**
@@ -106,12 +106,12 @@
     //     }
     // ];
     var books = [
-        createBook("THE VERY HUNGRY CATERPILLAR", "Eric", "Carle"),
-        createBook("Do You Want to Be My Friend?", "Eric", "Carle"),
-        createBook("From Head to Toe", "Eric", "Carle"),
-        createBook("WHERE IS BEAR?", "Tish", "Rabe"),
-        createBook("Before You Were Born", "Jennifer", "Davis")
-        ];
+        createBook("THE VERY HUNGRY CATERPILLAR", "Eric Carle"),
+        createBook("Do You Want to Be My Friend?", "Eric Carle"),
+        createBook("From Head to Toe", "Eric Carle"),
+        createBook("WHERE IS BEAR?", "Tish Rabe"),
+        createBook("Before You Were Born", "Jennifer Davis")
+    ];
     /**
      * TODO: 5
      * Loop through the books array and output the following information about
@@ -139,9 +139,7 @@
     // books.forEach(function(book, index) {
     //     console.log("Book # " +(index + 1) + "\n" + "Title: " + book.title + "\n" + book.author.firstName + " " + book.author.lastName);
     // });
-    books.forEach(function(book, index) {
-        console.log("Book # " +(index + 1) + "\n" + showBookInfo(book));
-    });
+    books.forEach(showBookInfo);
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -152,7 +150,10 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
-    function createBook(title, authorFirstName, authorLastName) {
+    function createBook(title, author) {
+        var authorNameArr = author.split(" ");
+        var authorFirstName = authorNameArr[0];
+        var authorLastName = authorNameArr[1];
         return {
             title: title,
             author: {
@@ -161,7 +162,7 @@
             }
         };
     }
-    function showBookInfo(book) {
-        return "Title: " + book.title + "\n" + book.author.firstName + " " + book.author.lastName;
+    function showBookInfo(book, index) {
+       console.log("Book # " +(index + 1) + "\n" +"Title: " + book.title + "\n" + book.author.firstName + " " + book.author.lastName);
     }
-})();
+// })();
