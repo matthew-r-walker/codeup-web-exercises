@@ -1,4 +1,4 @@
-// (function() {
+(function() {
     "use strict";
 
     /**
@@ -165,4 +165,4 @@
     function showBookInfo(book, index) {
        console.log("Book # " +(index + 1) + "\n" +"Title: " + book.title + "\n" + book.author.firstName + " " + book.author.lastName);
     }
-// })();
+})();
