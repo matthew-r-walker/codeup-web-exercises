@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Register With Us</title>
+    </head>
+    <body>
+        <header>
+        <h1>Veridian Dynamics registration form</h1>
+        </header>
+        <hr>
+        <main>
+            <form method="POST" action="https://request-inspector.glitch.me/">
+                <label for="user_email">Email</label>
+                <br>
+                <input name="user_email" id="user_email" type="text" placeholder="Enter email here.">
+                <br>
+                <label for="password">Password</label>
+                <br>
+                <input name="password" id="password" type="password" placeholder="Enter password here.">
+                <br>
+                <label for="bio">Bio</label>
+                <br>
+                <textarea name="bio" id="bio" cols="30" rows="10" placeholder="Give us a short description of yourself."></textarea>
+                <h3>How'd you hear about us?</h3>
+                <input id="ad-bb" name="advertising" value="billboard" type="checkbox">
+                <label for="ad-bb">Billboard</label>
+                <input id="ad-ra" name="advertising" value="radio" type="checkbox">
+                <label for="ad-ra">Radio advertisement</label>
+                <input id="ad-ia" name="advertising" value="internet" type="checkbox">
+                <label for="ad-ia">Internet advertisement</label>
+                <input id="ad-o" name="advertising" value="other" type="checkbox">
+                <label for="ad-o">Other</label>
+    <!--            <input id="ad-bb" name="advertising1" value="billboard" type="radio">-->
+    <!--            <label for="ad-bb">Billboard</label>-->
+    <!--            <input id="ad-ra" name="advertising2" value="radio" type="radio">-->
+    <!--            <label for="ad-ra">Radio advertisement</label>-->
+    <!--            <input id="ad-ia" name="advertising3" value="internet" type="radio">-->
+    <!--            <label for="ad-ia">Internet advertisement</label>-->
+    <!--            <input id="ad-o" name="advertising4" value="other" type="radio">-->
+    <!--            <label for="ad-o">Other</label>-->
+                <label for="browser_type"><h3>What browser are you using?</h3></label>
+                <select name="browser_type" id="browser_type">
+                    <option value="chrome">Chrome</option>
+                    <option value="firefox" selected>Firefox</option>
+                    <option value="safari">Safari</option>
+                </select>
+                <hr>
+                <br>
+                <button type="submit">Submit!</button>
+            </form>
+        </main>
+    </body>
+</html>
