@@ -1,0 +1,83 @@
+body {
+    font-family: 'Varela Round', Papyrus, sans-serif;
+    font-size: 1.1em;
+    background-color: #a3b792;
+    background-image: url(../img/codeup-arrow.png), linear-gradient(#8d8547, #a3b792) ;
+    background-repeat: no-repeat;
+    background-position:bottom right, top;
+    background-size: 10%, 100%;
+    background-blend-mode: luminosity;
+    background-attachment: fixed, scroll;
+}
+.fancy-header {
+    color: #435f04;
+    text-decoration: underline;
+    text-decoration-color: #816e35;
+}
+header {
+    text-align: center;
+    border: 4px double #023c02;
+    border-radius: 40px;
+}
+strong, em {
+    color: #453c1c;
+}
+
+h2 {
+    color: #3b6d0d;
+    text-decoration: underline;
+    text-decoration-color: #707034;
+}
+
+hr {
+    border: 2px solid #918235;
+    border-radius: 5px;
+}
+
+th {
+    color: #2b9408;
+    font-size: 1.2em;
+    text-decoration: underline;
+    text-decoration-color: #7e7845;
+}
+
+tr, td {
+    padding: 10px;
+    font-size: 1.4em;
+    border: 1px solid #453b29;
+    border-radius: 5px;
+}
+
+tr {
+    color: #918235;
+}
+
+ul {
+    list-style: square;
+}
+
+ol, ul {
+    color: #4c3625;
+}
+
+p {
+    color: #664e10;
+}
+
+img {
+    margin: 5px;
+    border: 2px solid #4c3625;
+    border-radius: 5px;
+    height: 300px;
+    width: 450px;
+}
+
+a:link {
+    color: #56851d;
+}
+a:visited {
+    color: #cb5503;
+}
+a:hover {
+    color: #ffda23;
+}
