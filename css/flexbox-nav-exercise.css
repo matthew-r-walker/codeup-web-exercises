@@ -1,0 +1,37 @@
+* {
+    font-family: 'Montserrat', 'Work Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.nav-bar {
+    background: #c1c1c1;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+}
+ul {
+    padding: 0;
+    list-style: none;
+}
+li {
+    padding: 1.7em .5em;
+}
+#logo {
+    padding: .2em 0;
+    font-size: 3em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+}
+a:hover {
+    color: blue;
+}
