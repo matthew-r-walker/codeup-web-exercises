@@ -1,0 +1,23 @@
+body {
+    /*background: #900fb7;*/
+}
+#search-form {
+    margin-left: 20px;
+}
+.bg-pizza {
+    background-image: url("../img/pizza.png");
+}
+.jumbotron {
+
+}
+.opaque-bg {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+}
+.bg-navbar {
+    background: #f7f7f7;
+    margin-bottom: 2em;
+}
