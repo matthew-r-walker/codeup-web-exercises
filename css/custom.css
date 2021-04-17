@@ -1,14 +1,6 @@
-body {
-    /*background: #900fb7;*/
-}
-#search-form {
-    margin-left: 20px;
-}
+
 .bg-pizza {
     background-image: url("../img/pizza.png");
-}
-.jumbotron {
-
 }
 .opaque-bg {
     background: rgba(255, 255, 255, 0.6);
