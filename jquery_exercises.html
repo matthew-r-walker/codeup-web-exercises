@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery</title>
+</head>
+<body>
+    <h1 id="id-selectors" class="jq-stuff">Some content</h1>
+    <div class="jq-class">
+        <p id="jq-pgraph1" class="codeup jq-ipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum doloremque illo ipsam laborum mollitia nulla pariatur quidem. Natus, possimus vero. Aliquid esse fugiat, impedit nihil nobis quis ullam voluptas. Consequatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad, atque autem, cumque esse fugit laudantium neque obcaecati possimus quasi recusandae repellat rerum voluptatibus! Ab accusantium delectus deleniti soluta vero.</p>
+        <ul  class="jq-list codeup">
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+            <li>List item 4</li>
+        </ul>
+    </div>
+    <h1>More content</h1>
+    <div class="jq-class">
+        <p id="jq-pgraph2" class="codeup jq-ipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum doloremque illo ipsam laborum mollitia nulla pariatur quidem. Natus, possimus vero. Aliquid esse fugiat, impedit nihil nobis quis ullam voluptas. Consequatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad, atque autem, cumque esse fugit laudantium neque obcaecati possimus quasi recusandae repellat rerum voluptatibus! Ab accusantium delectus deleniti soluta vero.</p>
+        <ul class="jq-list" >
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+            <li>List item 4</li>
+        </ul>
+    </div>
+    <script src="js/jquery-3.6.0.min.js">
+    </script>
+    <script>
+        // $("h1").each( function() {
+        //     alert($("h1").html());
+        // });
+        // var theContent = $("#id-selectors").html();
+        // alert(theContent);
+        // $('.codeup').css('border', '1px solid red');
+        // $(document).ready(function() {
+        //     alert( 'The DOM has finished loading!' );
+        // });
+        // $("#id-selectors").html("I am the chosen one");
+        $('li').css('font-size', '20px');
+        $('h1, p, li').css('background-color', '#c4ca21');
+    </script>
+</body>
+</html>
