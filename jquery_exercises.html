@@ -38,8 +38,32 @@
         //     alert( 'The DOM has finished loading!' );
         // });
         // $("#id-selectors").html("I am the chosen one");
-        $('li').css('font-size', '20px');
-        $('h1, p, li').css('background-color', 'hotpink');
+        // $('li').css('font-size', '20px');
+        // $('h1, p, li').css('background-color', 'hotpink');
+
+        // Mouse events
+
+        function changeBackGround() {
+            $(this).css('background-color', 'hotpink');
+            $(this).css('text-align', 'center');
+        }
+
+        $('h1').click(changeBackGround);
+
+        $('p').dblclick(function () {
+            $('p').css('font-size', '18px');
+        });
+        $('li').hover(
+            function () {
+                $(this).css('color', 'red');
+                $(this).css('font-size', '20px');
+            },
+            function () {
+                $(this).css('color', 'initial');
+                $(this).css('font-size', 'initial');
+            }
+        );
+
     </script>
 </body>
 </html>
