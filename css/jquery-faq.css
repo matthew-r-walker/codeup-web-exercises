@@ -1,0 +1,12 @@
+.hot-pink-bg {
+    background-color: hotpink;
+}
+.invisible {
+    visibility: hidden;
+}
+body, a, dl {
+    margin: 2em;
+}
+dt {
+    margin: 2em 0;
+}
