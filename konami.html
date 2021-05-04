@@ -7,6 +7,8 @@
             text-align: center;
             color: white;
             background-color: black;
+            background-repeat: no-repeat;
+            background-position: center;
             height: 100vh;
         }
         #konami-header {
@@ -32,7 +34,7 @@
             if (e.keyCode === 13 && konamiCodeKeyCode === userInput) {
                 alert('You have added 30 lives!');
                 $('body').css('background-image', 'url("img/konami-arcade.png")');
-                $('#konami-code').css('display', 'none');
+                $('#konami-code').remove();
                 $('#konami-header').css('display', 'block');
             } else if (e.keyCode === 13 && konamiCodeKeyCode !== userInput) {
                 alert('Incorrect code, try again.');
