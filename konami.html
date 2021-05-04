@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Arcade</title>
+    <style>
+        body {
+            text-align: center;
+            color: white;
+            background-color: black;
+            height: 100vh;
+        }
+        #konami-header {
+            display: none;
+            background-color: red;
+            border: solid red 1px;
+            border-radius: 0 0 50px 0 ;
+            width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="konami-header">Welcome to Konami Arcade</h1>
+    <img id="konami-code" src="img/konami-code.jpeg">
+    <script src="js/jquery-3.6.0.min.js"></script>
+<script>
+        "use strict";
+        // The Konami Code: Up, Up, Down, Down, Left, Right, Left, Right, B, A ( ↑ ↑ ↓ ↓ ← → ← → B A )
+        var konamiCodeKeyCode = '38384040373937396665';
+        var userInput = '';
+        $(document).keyup(function(e){
+            if (e.keyCode === 13 && konamiCodeKeyCode === userInput) {
+                alert('You have added 30 lives!');
+                $('body').css('background-image', 'url("img/konami-arcade.png")');
+                $('#konami-code').css('display', 'none');
+                $('#konami-header').css('display', 'block');
+            } else if (e.keyCode === 13 && konamiCodeKeyCode !== userInput) {
+                alert('Incorrect code, try again.');
+                return userInput = '';
+            }
+            userInput += '' + e.keyCode;
+        });
+    </script>
+</body>
+</html>
