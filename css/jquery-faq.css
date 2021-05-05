@@ -1,5 +1,5 @@
-.hot-pink-bg {
-    background-color: hotpink;
+.green-bg {
+    background-color: #027a1d;
 }
 .yellow-bg {
     background-color: yellow;
@@ -12,4 +12,25 @@ body, a, dl {
 }
 dt {
     margin: 2em 0;
+}
+#pic-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.pics {
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    border: black solid 3px;
+    border-radius: 5px;
+}
+.pic-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttons-size {
+    box-sizing: content-box;
+    width: 40px;
 }

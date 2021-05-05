@@ -77,26 +77,26 @@
         <li>Yellowstone is home to more than 500 active geysers (more than half the world’s geysers).</li>
         <li>Yellowstone Lake has 131.7 sq. miles of surface area and 141 miles of shoreline. It is the largest high elevation lake in North America.</li>
     </ul>
-    <button id="highlight-last">Click me</button>
+    <button id="highlight-last">Highlight last list items</button>
+    <div id="pic-box">
+        <div><img src="img/business-meeting-bw.jpg" alt="business meeting black and white"><button id="btn1">Swap</button></div>
+        <div><img src="img/people-using-mac.jpg" alt="two people using a macbook"><button id="btn2">Swap</button></div>
+        <div><img src="img/sunset.jpg" alt="sun setting over water"><button id="btn3">Swap</button></div>
+    </div>
 
     <!-- Scripts below -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script>
+// Attributes and CSS
         $('dd').addClass('invisible');
         $('#show-all').click(function (){
             $('dd').toggleClass('invisible');
         });
         $('dt').click(function (){
-            $(this).toggleClass('hot-pink-bg');
+            $(this).toggleClass('green-bg');
             $(this).next().toggleClass('invisible');
         });
-/// Traversing exercise
-        $('main ul li').each(function (index){
-           $(this).css('font-style', 'italic');
-           if (index % 2 !== 0){
-               $(this).addClass('hot-pink-bg');
-           }
-        });
+// Traversing exercise
         $('#highlight-last').click(function (){
             $('ul').each(function (){
                 $(this).children().last().toggleClass('yellow-bg');
@@ -108,7 +108,10 @@
         $('ul').click(function (){
             $(this).children().first().css('color', 'blue');
         });
-
+// Traversing bonus
+        $('img').addClass('pics');
+        $('#pic-box').children().addClass('pic-buttons');
+        $('pic-buttons').addClass('buttons-size');
     </script>
 </body>
 </html>
