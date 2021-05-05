@@ -13,7 +13,7 @@ body, a, dl {
 dt {
     margin: 2em 0;
 }
-#pic-box {
+.pic-box {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -22,15 +22,11 @@ dt {
     box-sizing: border-box;
     width: 200px;
     height: 200px;
-    border: black solid 3px;
+    border: #6e5a04 solid 5px;
     border-radius: 5px;
 }
 .pic-buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.buttons-size {
-    box-sizing: content-box;
-    width: 40px;
 }
