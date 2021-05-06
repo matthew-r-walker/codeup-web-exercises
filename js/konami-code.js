@@ -20,16 +20,16 @@ $(document).keyup(function(e){
     enterArcade();
 });
 // Area listeners for konami-code image map
-$('.up').click(function (){
+$('#up').click(function (){
     userInput += '38';
 });
-$('.down').click(function (){
+$('#down').click(function (){
     userInput += '40';
 });
-$('.left').click(function (){
+$('#left').click(function (){
     userInput += '37';
 });
-$('.right').click(function (){
+$('#right').click(function (){
     userInput += '39';
 });
 $('#b-button').click(function (){
