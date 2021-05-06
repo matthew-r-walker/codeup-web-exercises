@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+    color: white;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+}
+.first-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#konami-header {
+    display: none;
+    background-color: red;
+    border: solid red 1px;
+    border-radius: 0 0 50px 0 ;
+    width: 400px;
+    margin: auto;
+    margin-top: 10px;
+
+}

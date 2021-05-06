@@ -2,46 +2,25 @@
 <html>
 <head>
     <title>Konami Arcade</title>
-    <style>
-        body {
-            text-align: center;
-            color: white;
-            background-color: black;
-            background-repeat: no-repeat;
-            background-position: center;
-            height: 100vh;
-        }
-        #konami-header {
-            display: none;
-            background-color: red;
-            border: solid red 1px;
-            border-radius: 0 0 50px 0 ;
-            width: 400px;
-            margin: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="css/konami-code.css">
 </head>
-<body>
+<body class="first-page">
     <h1 id="konami-header">Welcome to Konami Arcade</h1>
-    <img id="konami-code" src="img/konami-code.jpeg">
+    <img id="konami-code" src="img/konami-code.jpeg" usemap="#image-map">
+    <map name="image-map">
+        <area  class="up" alt="first-up" title="first-up" href="#" coords="88,56,120,85" shape="rect">
+        <area  class="up" alt="second-up" title="second-up" href="#" coords="204,56,237,83" shape="rect">
+        <area  class="down" alt="first-down" title="first-down" href="#" coords="320,157,354,131" shape="rect">
+        <area  class="down" alt="second-down" title="second-down" href="#" coords="439,157,472,133" shape="rect">
+        <area  class="left" alt="first-left" title="first-left" href="#" coords="520,93,548,122" shape="rect">
+        <area  class="right" alt="first-right" title="first-right" href="#" coords="714,93,739,122" shape="rect">
+        <area  class="left" alt="second-left" title="second-left" href="#" coords="755,92,784,124" shape="rect">
+        <area  class="right" alt="second-right" title="second-right" href="#" coords="948,94,975,121" shape="rect">
+        <area  id="b-button" alt="b-button" title="b-button" href="#" coords="472,225,27" shape="circle">
+        <area  id="a-button" alt="a-button" title="a-button" href="#" coords="555,225,29" shape="circle">
+        <area  id="start-button" alt="start-button" title="start-button" href="#" coords="469,304,563,332" shape="rect">
+    </map>
     <script src="js/jquery-3.6.0.min.js"></script>
-<script>
-        "use strict";
-        // The Konami Code: Up, Up, Down, Down, Left, Right, Left, Right, B, A ( ↑ ↑ ↓ ↓ ← → ← → B A )
-        var konamiCodeKeyCode = '38384040373937396665';
-        var userInput = '';
-        $(document).keyup(function(e){
-            if (e.keyCode === 13 && konamiCodeKeyCode === userInput) {
-                alert('You have added 30 lives!');
-                $('body').css('background-image', 'url("img/konami-arcade.png")');
-                $('#konami-code').remove();
-                $('#konami-header').css('display', 'block');
-            } else if (e.keyCode === 13 && konamiCodeKeyCode !== userInput) {
-                alert('Incorrect code, try again.');
-                return userInput = '';
-            }
-            userInput += '' + e.keyCode;
-        });
-    </script>
+    <script src="js/konami-code.js"></script>
 </body>
 </html>
