@@ -2,40 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>The Library Is Open</title>
-    <style>
-        .books {
-            color: forestgreen;
-            background: paleturquoise;
-            border: 5px solid darkgoldenrod;
-            border-radius: 25px;
-        }
-    </style>
+    <title>Title</title>
+
 </head>
 <body>
-<main id="library">
+    <main>
 
-</main>
-<button id="the-button">Reread The JSON!</button>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script>
-    function buildStuff() {
-        $("#library").html("");
-        $.ajax("data/books.json").done(function (books) {
-            console.log(books);
-            for (var j = 0; j < books.length; j++) {
-                var htmlStr = "<div id='book-" + (j + 1) + "' class='books'>";
-                htmlStr += "<h3>" + books[j].title + "</h3>";
-                htmlStr += "<p>" + books[j].author.firstName + " " + books[j].author.lastName + "</p>";
-                htmlStr += "</div>";
-                $("#library").append(htmlStr);
-            }
-        });
-    }
+    </main>
 
-    $("#the-button").click(buildStuff);
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script>
 
-    buildStuff();
-</script>
+    </script>
 </body>
 </html>

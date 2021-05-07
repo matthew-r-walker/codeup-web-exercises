@@ -39,5 +39,21 @@
             "outdoor"
         ],
         "price": 100
+    }, {
+        "title": "Chainsaw",
+        "quantity": 5,
+        "categories": [
+            "tool",
+            "gas",
+            "outdoor"
+        ],
+        "price": 150
+    }, {
+        "title": "Crescent Wrench",
+        "quantity": 20,
+        "categories": [
+            "tool"
+        ],
+        "price": 12
     }
 ]

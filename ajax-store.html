@@ -3,10 +3,11 @@
 <head>
     <title>Online Store</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/ajax-store.css">
 </head>
 <body>
 
-<h1>My Tool Store</h1>
+<h1>Southern Tool</h1>
 
 <table id="products">
     <thead>
@@ -41,23 +42,24 @@
                 var htmlStr = "<tr id='tool-" + (i + 1) + "' class='tools'>";
                 htmlStr += "<td>" + tools[i].title + "</td>";
                 htmlStr += "<td>" + tools[i].quantity + "</td>";
-                htmlStr += "<td>" + tools[i].price + "</td>";
+                htmlStr += "<td>$" + tools[i].price + "</td>";
                 htmlStr += "<td><ul>";
-                for(var j = 0; j < tools[i].categories.length; ++j) {
-                    htmlStr += "<li>" + tools[i].categories[j] + "</li>";
-                };
+                tools[i].categories.forEach(function (element) {
+                    htmlStr += "<li>" + element + "</li>";
+                });
                 htmlStr += "</ul></td>";
                 htmlStr += "</tr>";
                 $('#insertProducts').append(htmlStr);
             }
         });
     }
-    $('#insertProducts').after("<button id='update-button' class='btn btn-info btn-sm'>Check for updates</button>");
+    $('#insertProducts').after("<button id='update-button' class='btn btn-warning btn-sm'>Check for updates</button>");
     $('#update-button').click(loadToolTable);
     loadToolTable();
-    $('table').addClass('table table-dark');
-    $('h1').addClass('jumbotron jumbotron-fluid text-center');
-
+    $('table').addClass('table table-bordered table-dark container');
+    $('h1').addClass('jumbotron jumbotron-fluid text-center mb-0');
+    $('body').addClass('m-0 p-0');
+    $('th').first().html('Items');
 })();
 </script>
 

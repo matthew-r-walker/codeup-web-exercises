@@ -1,0 +1,17 @@
+h1 {
+    font-size: 50px;
+    font-family: "Academy Engraved LET", sans-serif;
+    background: linear-gradient(to right, red, #f06d06, rgb(255, 255, 0), green);
+    text-shadow: 1px 5px 5px rgb(0, 0, 0);
+}
+body {
+    background: linear-gradient(to right, #770707, #915517, rgb(174, 174, 10), #054c05);
+    font-size: 18px;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+td, th {
+    text-align: center;
+}
