@@ -30,29 +30,43 @@
     map.addControl(new mapboxgl.NavigationControl());
     map.addControl(new mapboxgl.GeolocateControl());
 
-    var marker = new mapboxgl.Marker()
-        .setLngLat([-98.59534148825605, 29.599431615033613])
-        .setDraggable(true)
-        .addTo(map);
 
+    function markerMaker(obj) {
+        var marker = new mapboxgl.Marker()
+            .setLngLat(obj.location)
+            .setDraggable(true)
+            .addTo(map);
+        var popup = new mapboxgl.Popup()
+            .setLngLat(obj.location)
+            .setHTML("<h3>" + obj.name + "</h3>")
+            .setMaxWidth("300px");
+        marker.setPopup(popup);
+    }
+    var myFavs = [
+        {
+            name: 'Velvet Taco',
+            location: [-98.59534148825605, 29.599431615033613]
+        },
+        {
+            name: 'Flying Saucer',
+            location: [-98.57739, 29.54823]
+        },
+        {
+            name: 'La Tuna Icehouse & Grill',
+            location: [-98.49601795859522, 29.407669038464455]
+        },
+    ];
+    myFavs.forEach(markerMaker);
 
     // marker.on('dragend', function (){
     //     alert(marker.getLngLat());
     // });
     // map.on('click', marker function(){thing happen here})
-    var popup = new mapboxgl.Popup()
-        .setLngLat(marker.getLngLat())
-        .setHTML("<h3>Velvet Taco</h3>")
-        .setMaxWidth("300px");
-
-    marker.setPopup(popup);
 
 
-
-
-        // geocode("Velvet Taco", MAPBOX_ACCESS_TOKEN).then(function (results){
-        //     console.log(results);
-        // });
+    // geocode("Velvet Taco", MAPBOX_ACCESS_TOKEN).then(function (results){
+    //     console.log(results);
+    // });
 </script>
 </body>
 </html>
