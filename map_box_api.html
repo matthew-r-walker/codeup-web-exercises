@@ -2,71 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MAP BOX API</title>
+    <title>Mapbox API</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
-<h1>mapbox API</h1>
+    <h1>Mapbox API</h1>
 
-<div id='map' style='width: 400px; height: 300px;'></div>
+    <div id='map' style='width: 400px; height: 300px;'></div>
+    <label for="zoom-levels">Zoom options</label>
+    <select id="zoom-levels">
+        <option value="zoom-default" selected>Default</option>
+        <option value="zoom-5">Zoom 5</option>
+        <option value="zoom-15">Zoom 15</option>
+        <option value="zoom-20">Zoom 20</option>
+    </select>
+    <script src="js/keys.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <script src="js/mapbox-geocoder-utils.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+        var map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/satellite-streets-v11', // style URL
+            center: [-98.49272, 29.42527], // starting position [lng, lat]
+            zoom: 8.7 // starting zoom
+        });
+        $('#zoom-levels').change(function (){
+            var zoomSelectVal = $('#zoom-levels').val();
+            if (zoomSelectVal === 'zoom-default') {
+                map.setZoom(8.7);
+            } else if (zoomSelectVal === 'zoom-5') {
+                map.setZoom(5);
+            }  else if (zoomSelectVal === 'zoom-15') {
+                map.setZoom(15);
+            }  else if (zoomSelectVal === 'zoom-20') {
+                map.setZoom(20);
+            }
+        });
+        // map.setStyle('mapbox://styles/mapbox/dark-v10');
+        // map.setCenter([-82.5515, 35.5951]);
+        // console.log(map.getCenter());
 
-<script src="js/keys.js"></script>
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
-<script src="js/mapbox-geocoder-utils.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script>
-    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
-    var map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/satellite-streets-v11', // style URL
-        center: [-98.49272, 29.42527], // starting position [lng, lat]
-        zoom: 8.7 // starting zoom
-    });
-
-    // map.setStyle('mapbox://styles/mapbox/dark-v10');
-    // map.setCenter([-82.5515, 35.5951]);
-    // console.log(map.getCenter());
-
-    map.addControl(new mapboxgl.NavigationControl());
-    map.addControl(new mapboxgl.GeolocateControl());
-
-
-    function markerMaker(obj) {
-        var marker = new mapboxgl.Marker()
-            .setLngLat(obj.location)
-            .setDraggable(true)
-            .addTo(map);
-        var popup = new mapboxgl.Popup()
-            .setLngLat(obj.location)
-            .setHTML("<h3>" + obj.name + "</h3>")
-            .setMaxWidth("300px");
-        marker.setPopup(popup);
-    }
-    var myFavs = [
-        {
-            name: 'Velvet Taco',
-            location: [-98.59534148825605, 29.599431615033613]
-        },
-        {
-            name: 'Flying Saucer',
-            location: [-98.57739, 29.54823]
-        },
-        {
-            name: 'La Tuna Icehouse & Grill',
-            location: [-98.49601795859522, 29.407669038464455]
-        },
-    ];
-    myFavs.forEach(markerMaker);
-
-    // marker.on('dragend', function (){
-    //     alert(marker.getLngLat());
-    // });
-    // map.on('click', marker function(){thing happen here})
+        map.addControl(new mapboxgl.NavigationControl());
+        map.addControl(new mapboxgl.GeolocateControl());
 
 
-    // geocode("Velvet Taco", MAPBOX_ACCESS_TOKEN).then(function (results){
-    //     console.log(results);
-    // });
-</script>
+        function markerMaker(obj) {
+            var marker = new mapboxgl.Marker()
+                .setLngLat(obj.location)
+                .setDraggable(true)
+                .addTo(map);
+            var popup = new mapboxgl.Popup()
+                .setLngLat(obj.location)
+                .setHTML("<h3>" + obj.name + "</h3>")
+                .setMaxWidth("300px");
+            marker.setPopup(popup);
+        }
+        var myFavs = [
+            {
+                name: 'Velvet Taco',
+                location: [-98.59534148825605, 29.599431615033613]
+            },
+            {
+                name: 'Flying Saucer',
+                location: [-98.57739, 29.54823]
+            },
+            {
+                name: 'La Tuna Icehouse & Grill',
+                location: [-98.49601795859522, 29.407669038464455]
+            },
+        ];
+        myFavs.forEach(markerMaker);
+
+        // marker.on('dragend', function (){
+        //     alert(marker.getLngLat());
+        // });
+        // map.on('click', marker function(){thing happen here})
+
+
+        // geocode("Velvet Taco", MAPBOX_ACCESS_TOKEN).then(function (results){
+        //     console.log(results);
+        // });
+    </script>
 </body>
 </html>
