@@ -72,7 +72,7 @@
     var latLngObj = {};
 
     var popup = new mapboxgl.Popup()
-        .setHTML("<h3>Initial set value</h3>")
+        .setHTML("<h3>San Antonio, Texas, United States</h3>")
         .setMaxWidth("300px");
 
     var marker = new mapboxgl.Marker()
@@ -87,16 +87,18 @@
         var lngLat = marker.getLngLat();
         latLngObj = {lat: lngLat.lat, lng: lngLat.lng};
         console.log(latLngObj);
-        getGeoLocal();
+        updateMarkerPopUpInfo();
     });
 
-    function getGeoLocal() {
+    function updateMarkerPopUpInfo() {
         reverseGeocode(latLngObj, MAPBOX_ACCESS_TOKEN).then(function (results) {
             console.log(results);
-            marker._popup._content.innerText = results;
+            var placeArr = results.features[0].place_name.split(',');
+            var stateZipArr = placeArr[2].split(' ');
+            var cityStateCountry = placeArr[1] + ', ' + stateZipArr[1] + ',' + placeArr[3];
+            marker._popup._content.innerHTML = '<h3>' + cityStateCountry + '</h3>';
         })
     }
-
 
     // geocode("San Antonio", MAPBOX_ACCESS_TOKEN).then(function (results){
     //     console.log(results);
