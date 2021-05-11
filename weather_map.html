@@ -28,7 +28,7 @@
                 // Takes in the index for response daily object and returns the chance of rain for that index/day
                 function chanceOfRain(index) {
                     var rainChanceDecimal = resp.daily[index].pop;
-                    var rainChancePercentage = rainChanceDecimal * 100 + '% Chance of precipitation';
+                    var rainChancePercentage = Math.round(rainChanceDecimal * 100) + '% Chance of precipitation';
                     return rainChancePercentage;
                 }
                 function humidityLevel(index) {
@@ -68,18 +68,39 @@
         center: [-98.49272, 29.42527], // starting position [lng, lat]
         zoom: 8.7 // starting zoom
     });
+
+    var latLngObj = {};
+
     var popup = new mapboxgl.Popup()
-        .setHTML("<h3>" +  + "</h3>")
+        .setHTML("<h3>Initial set value</h3>")
         .setMaxWidth("300px");
+
     var marker = new mapboxgl.Marker()
         .setLngLat([-98.49272, 29.42527])
         .setDraggable(true)
         .setPopup(popup)
         .addTo(map);
+
     marker.on('dragend', function (){
         coords = marker.getLngLat().toArray().reverse();
         getWeather();
+        var lngLat = marker.getLngLat();
+        latLngObj = {lat: lngLat.lat, lng: lngLat.lng};
+        console.log(latLngObj);
+        getGeoLocal();
     });
+
+    function getGeoLocal() {
+        reverseGeocode(latLngObj, MAPBOX_ACCESS_TOKEN).then(function (results) {
+            console.log(results);
+            marker._popup._content.innerText = results;
+        })
+    }
+
+
+    // geocode("San Antonio", MAPBOX_ACCESS_TOKEN).then(function (results){
+    //     console.log(results);
+    // });
 </script>
 </body>
 </html>
