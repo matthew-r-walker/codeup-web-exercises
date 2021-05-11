@@ -6,11 +6,11 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
+    <div id="day-0" class="weather-daily"></div>
     <div id="day-1" class="weather-daily"></div>
     <div id="day-2" class="weather-daily"></div>
     <div id="day-3" class="weather-daily"></div>
     <div id="day-4" class="weather-daily"></div>
-    <div id="day-5" class="weather-daily"></div>
     <div></div>
     <div id='map' style='width: 400px; height: 300px;'></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -24,7 +24,6 @@
             .done(function (resp) {
 
                 console.log(resp);
-                console.log(resp.daily[0].weather[0].description);
 
                 // Takes in the index for response daily object and returns the chance of rain for that index/day
                 function chanceOfRain(index) {
@@ -32,7 +31,10 @@
                     var rainChancePercentage = rainChanceDecimal * 100 + '% Chance of precipitation';
                     return rainChancePercentage;
                 }
-
+                function weatherDescription(index) {
+                    var description = resp.daily[index].weather[0].description;
+                    return description;
+                }
                 // Takes in the index for response daily object and returns the date for that index/day
                 function dailyDate(index) {
                     var today = resp.daily[index];
@@ -47,7 +49,6 @@
                     var date = dateMaker(todayDate);
                     return date;
                 }
-
                 // Takes in the index for response daily object and returns the high and low temperatures for that index/day
                 function highAndLowTemp(index) {
                     var highTemp = Math.round(resp.daily[index].temp.max);
@@ -55,13 +56,9 @@
                     var highAndLowTemps = highTemp + `\xB0F / ` + lowTemp + '\xB0F';
                     return highAndLowTemps;
                 }
-
-                $('#day-1').html(highAndLowTemp(0) + ' ' + dailyDate(0) + '<br>' + chanceOfRain(0));
-                $('#day-2').html(highAndLowTemp(1) + ' ' + dailyDate(1) + '<br>' + chanceOfRain(1));
-                $('#day-3').html(highAndLowTemp(2) + ' ' + dailyDate(2) + '<br>' + chanceOfRain(2));
-                $('#day-4').html(highAndLowTemp(3) + ' ' + dailyDate(3) + '<br>' + chanceOfRain(3));
-                $('#day-5').html(highAndLowTemp(4) + ' ' + dailyDate(4) + '<br>' + chanceOfRain(4));
-
+                for (var i = 0; i <= 4; ++i) {
+                    $('#day-' + i + '').html(highAndLowTemp(i) + ' ' + dailyDate(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i));
+                }
             });
     };
     getWeather();
