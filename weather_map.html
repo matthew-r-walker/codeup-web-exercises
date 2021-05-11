@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        .weather-daily {
+            border: solid black 2px;
+            border-radius: 1em;
+            margin: 2em;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div id="day-0" class="weather-daily"></div>
@@ -55,7 +63,7 @@
                     return highAndLowTemps;
                 }
                 for (var i = 0; i <= 4; ++i) {
-                    $('#day-' + i + '').html(highAndLowTemp(i) + ' ' + dailyDate(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i) + '<br>' + humidityLevel(i));
+                    $('#day-' + i + '').html(dailyDate(i) + '<br>' + highAndLowTemp(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i) + '<br>' + humidityLevel(i));
                 }
             });
     };
@@ -92,7 +100,6 @@
 
     function updateMarkerPopUpInfo() {
         reverseGeocode(latLngObj, MAPBOX_ACCESS_TOKEN).then(function (results) {
-            console.log(results);
             var placeArr = results.features[0].place_name.split(',');
             var stateZipArr = placeArr[2].split(' ');
             var cityStateCountry = placeArr[1] + ', ' + stateZipArr[1] + ',' + placeArr[3];
