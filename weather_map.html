@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+    <div id="day-1" class="weather-daily"></div>
+    <div id="day-2" class="weather-daily"></div>
+    <div id="day-3" class="weather-daily"></div>
+    <div id="day-4" class="weather-daily"></div>
+    <div id="day-5" class="weather-daily"></div>
+    <div></div>
+    <div id='map' style='width: 400px; height: 300px;'></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+<script src="js/keys.js"></script>
+<script>
+    var coords = [29.4241, -98.4936]; /* use getLng/lat then .toArray later for pin drop*/
+    function getWeather() {
+        $.ajax('https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=' + coords[0] + '&lon=' + coords[1] + '&exclude=current,hourly,minutely&appid=' + WEATHER_MAP_TOKEN)
+            .done(function (resp) {
+
+                console.log(resp);
+                console.log(resp.daily[0].weather[0].description);
+
+                // Takes in the index for response daily object and returns the chance of rain for that index/day
+                function chanceOfRain(index) {
+                    var rainChanceDecimal = resp.daily[index].pop;
+                    var rainChancePercentage = rainChanceDecimal * 100 + '% Chance of precipitation';
+                    return rainChancePercentage;
+                }
+
+                // Takes in the index for response daily object and returns the date for that index/day
+                function dailyDate(index) {
+                    var today = resp.daily[index];
+                    var todayDate = new Date(today.dt * 1000).toString();
+                    todayDate = todayDate.split(' ');
+                    function dateMaker(arr) {
+                        var dateInfo = [];
+                        dateInfo.push(arr[0], arr[1], arr[2]);
+                        dateInfo = dateInfo.join(' ');
+                        return dateInfo;
+                    }
+                    var date = dateMaker(todayDate);
+                    return date;
+                }
+
+                // Takes in the index for response daily object and returns the high and low temperatures for that index/day
+                function highAndLowTemp(index) {
+                    var highTemp = Math.round(resp.daily[index].temp.max);
+                    var lowTemp = Math.round(resp.daily[0].temp.min);
+                    var highAndLowTemps = highTemp + `\xB0F / ` + lowTemp + '\xB0F';
+                    return highAndLowTemps;
+                }
+
+                $('#day-1').html(highAndLowTemp(0) + ' ' + dailyDate(0) + '<br>' + chanceOfRain(0));
+                $('#day-2').html(highAndLowTemp(1) + ' ' + dailyDate(1) + '<br>' + chanceOfRain(1));
+                $('#day-3').html(highAndLowTemp(2) + ' ' + dailyDate(2) + '<br>' + chanceOfRain(2));
+                $('#day-4').html(highAndLowTemp(3) + ' ' + dailyDate(3) + '<br>' + chanceOfRain(3));
+                $('#day-5').html(highAndLowTemp(4) + ' ' + dailyDate(4) + '<br>' + chanceOfRain(4));
+
+            });
+    };
+    getWeather();
+    ///// map box stuff
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    var map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/satellite-streets-v11', // style URL
+        center: [-98.49272, 29.42527], // starting position [lng, lat]
+        zoom: 8.7 // starting zoom
+    });
+    var popup = new mapboxgl.Popup()
+        .setHTML("<h3>" +  + "</h3>")
+        .setMaxWidth("300px");
+    var marker = new mapboxgl.Marker()
+        .setLngLat([-98.49272, 29.42527])
+        .setDraggable(true)
+        .setPopup(popup)
+        .addTo(map);
+    marker.on('dragend', function (){
+        coords = marker.getLngLat().toArray().reverse();
+        console.log(coords);
+        getWeather();
+    });
+</script>
+</body>
+</html>
