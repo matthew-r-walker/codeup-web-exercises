@@ -14,8 +14,14 @@
     </style>
 </head>
 <body>
-
-
+    <div>
+        <label for="select-options">How many days of weather would you like to see?</label>
+        <select id="select-options">
+            <option value="3">Three days</option>
+            <option value="5" selected>Five days</option>
+            <option value="8">Eight days</option>
+        </select>
+    </div>
     <div>
         <label for="text-input">Search</label>
         <input type="text" id="text-input">
@@ -33,7 +39,7 @@
         $.ajax('https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=' + coords[0] + '&lon=' + coords[1] + '&exclude=current,hourly,minutely&appid=' + WEATHER_MAP_TOKEN)
             .done(function (resp) {
 
-                console.log(resp);
+                // console.log(resp);
 
                 // Takes in the index for response daily object and returns the chance of rain for that index/day
                 function chanceOfRain(index) {
@@ -41,6 +47,7 @@
                     var rainChancePercentage = Math.round(rainChanceDecimal * 100) + '% Chance of precipitation';
                     return rainChancePercentage;
                 }
+                // Takes in the index for response daily object and returns the humidity level for that index/day
                 function humidityLevel(index) {
                     var humidity = 'Humidity: ' + resp.daily[index].humidity + '%';
                     return humidity;
@@ -71,6 +78,7 @@
                     var highAndLowTemps = highTemp + `\xB0F / ` + lowTemp + '\xB0F';
                     return highAndLowTemps;
                 }
+                /// This is creating too much html need to refactor with my select list stuff
                 for (var i = 0; i <= 4; ++i) {
                     $('body').prepend('<div id="day-' + i + '" class="weather-daily"></div>')
                     $('#day-' + i + '').html(dailyDate(i) + '<br>' + weatherIcon(i) + '<br>' + highAndLowTemp(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i) + '<br>' + humidityLevel(i));
@@ -78,6 +86,7 @@
             });
     };
     getWeather();
+
     ///// map box stuff
     mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
     var map = new mapboxgl.Map({
@@ -112,19 +121,21 @@
             var arr = results.features;
             var place = arr.find(x => x.id.includes('place') === true);
             marker._popup._content.innerHTML = '<h3>' + place.place_name + '</h3>';
-            console.log(results);
+            // console.log(results);
         })
     }
+
     var textInput = '';
     $('button').click(function (){
         textInput = $('#text-input').val();
         console.log(textInput);
         moveMarkerToSearched();
     })
+
     function moveMarkerToSearched() {
         geocode(textInput, MAPBOX_ACCESS_TOKEN).then(function (results){
             marker.setLngLat(results);
-            console.log(results);
+            // console.log(results);
             coords = marker.getLngLat().toArray().reverse();
             updateMarkerPopUpInfo();
             getWeather();
@@ -135,7 +146,6 @@
             });
         });
     }
-
 </script>
 </body>
 </html>
