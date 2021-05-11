@@ -40,13 +40,7 @@
                     var today = resp.daily[index];
                     var todayDate = new Date(today.dt * 1000).toString();
                     todayDate = todayDate.split(' ');
-                    function dateMaker(arr) {
-                        var dateInfo = [];
-                        dateInfo.push(arr[0], arr[1], arr[2]);
-                        dateInfo = dateInfo.join(' ');
-                        return dateInfo;
-                    }
-                    var date = dateMaker(todayDate);
+                    var date = [todayDate[0], todayDate[1], todayDate[2]].join(' ');
                     return date;
                 }
                 // Takes in the index for response daily object and returns the high and low temperatures for that index/day
@@ -80,7 +74,6 @@
         .addTo(map);
     marker.on('dragend', function (){
         coords = marker.getLngLat().toArray().reverse();
-        console.log(coords);
         getWeather();
     });
 </script>
