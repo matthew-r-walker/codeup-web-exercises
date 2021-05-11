@@ -14,12 +14,14 @@
     </style>
 </head>
 <body>
-    <div id="day-0" class="weather-daily"></div>
-    <div id="day-1" class="weather-daily"></div>
-    <div id="day-2" class="weather-daily"></div>
-    <div id="day-3" class="weather-daily"></div>
-    <div id="day-4" class="weather-daily"></div>
-    <div></div>
+
+
+    <div>
+        <label for="text-input">Search</label>
+        <input type="text" id="text-input">
+        <button type="submit">Go</button>
+    </div>
+
     <div id='map' style='width: 400px; height: 300px;'></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
@@ -43,6 +45,7 @@
                     var humidity = 'Humidity: ' + resp.daily[index].humidity + '%';
                     return humidity;
                 }
+                // Takes in the index for response daily object and returns the weather description for that index/day
                 function weatherDescription(index) {
                     var description = resp.daily[index].weather[0].description;
                     return description;
@@ -55,6 +58,12 @@
                     var date = [todayDate[0], todayDate[1], todayDate[2]].join(' ');
                     return date;
                 }
+                // Takes in the index for response daily object and returns the weather icon for that index/day
+                function weatherIcon(index) {
+                    var img = resp.daily[index].weather[0].icon;
+                    var imgSrc = '<img src="http://openweathermap.org/img/w/'+ img +'.png">'
+                    return imgSrc;
+                }
                 // Takes in the index for response daily object and returns the high and low temperatures for that index/day
                 function highAndLowTemp(index) {
                     var highTemp = Math.round(resp.daily[index].temp.max);
@@ -63,7 +72,8 @@
                     return highAndLowTemps;
                 }
                 for (var i = 0; i <= 4; ++i) {
-                    $('#day-' + i + '').html(dailyDate(i) + '<br>' + highAndLowTemp(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i) + '<br>' + humidityLevel(i));
+                    $('body').prepend('<div id="day-' + i + '" class="weather-daily"></div>')
+                    $('#day-' + i + '').html(dailyDate(i) + '<br>' + weatherIcon(i) + '<br>' + highAndLowTemp(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i) + '<br>' + humidityLevel(i));
                 }
             });
     };
@@ -92,24 +102,42 @@
     marker.on('dragend', function (){
         coords = marker.getLngLat().toArray().reverse();
         getWeather();
-        var lngLat = marker.getLngLat();
-        latLngObj = {lat: lngLat.lat, lng: lngLat.lng};
-        console.log(latLngObj);
         updateMarkerPopUpInfo();
     });
 
     function updateMarkerPopUpInfo() {
+        var lngLat = marker.getLngLat();
+        latLngObj = {lat: lngLat.lat, lng: lngLat.lng};
         reverseGeocode(latLngObj, MAPBOX_ACCESS_TOKEN).then(function (results) {
             var placeArr = results.features[0].place_name.split(',');
+            console.log(results.features);
             var stateZipArr = placeArr[2].split(' ');
             var cityStateCountry = placeArr[1] + ', ' + stateZipArr[1] + ',' + placeArr[3];
             marker._popup._content.innerHTML = '<h3>' + cityStateCountry + '</h3>';
+            console.log(results);
         })
     }
+    var textInput = '';
+    $('button').click(function (){
+        textInput = $('#text-input').val();
+        console.log(textInput);
+        moveMarkerToSearched();
+    })
+    function moveMarkerToSearched() {
+        geocode(textInput, MAPBOX_ACCESS_TOKEN).then(function (results){
+            marker.setLngLat(results);
+            console.log(results);
+            coords = marker.getLngLat().toArray().reverse();
+            updateMarkerPopUpInfo();
+            getWeather();
+            map.flyTo({
+                center: results,
+                zoom: 8.7,
+                speed: 0.5
+            });
+        });
+    }
 
-    // geocode("San Antonio", MAPBOX_ACCESS_TOKEN).then(function (results){
-    //     console.log(results);
-    // });
 </script>
 </body>
 </html>
