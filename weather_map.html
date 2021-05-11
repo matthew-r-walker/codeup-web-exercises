@@ -31,6 +31,10 @@
                     var rainChancePercentage = rainChanceDecimal * 100 + '% Chance of precipitation';
                     return rainChancePercentage;
                 }
+                function humidityLevel(index) {
+                    var humidity = 'Humidity: ' + resp.daily[index].humidity + '%';
+                    return humidity;
+                }
                 function weatherDescription(index) {
                     var description = resp.daily[index].weather[0].description;
                     return description;
@@ -51,7 +55,7 @@
                     return highAndLowTemps;
                 }
                 for (var i = 0; i <= 4; ++i) {
-                    $('#day-' + i + '').html(highAndLowTemp(i) + ' ' + dailyDate(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i));
+                    $('#day-' + i + '').html(highAndLowTemp(i) + ' ' + dailyDate(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i) + '<br>' + humidityLevel(i));
                 }
             });
     };
