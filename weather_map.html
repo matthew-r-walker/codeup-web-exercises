@@ -109,11 +109,9 @@
         var lngLat = marker.getLngLat();
         latLngObj = {lat: lngLat.lat, lng: lngLat.lng};
         reverseGeocode(latLngObj, MAPBOX_ACCESS_TOKEN).then(function (results) {
-            var placeArr = results.features[0].place_name.split(',');
-            console.log(results.features);
-            var stateZipArr = placeArr[2].split(' ');
-            var cityStateCountry = placeArr[1] + ', ' + stateZipArr[1] + ',' + placeArr[3];
-            marker._popup._content.innerHTML = '<h3>' + cityStateCountry + '</h3>';
+            var arr = results.features;
+            var place = arr.find(x => x.id.includes('place') === true);
+            marker._popup._content.innerHTML = '<h3>' + place.place_name + '</h3>';
             console.log(results);
         })
     }
