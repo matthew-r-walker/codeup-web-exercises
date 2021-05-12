@@ -25,6 +25,7 @@ body{
     padding-top: .5em;
     background: rgba(0, 0, 0, 0.45);
     text-decoration: underline #1795d4;
+    margin-bottom: .3em;
 }
 .label-bg {
     background-color: #1795d4;
