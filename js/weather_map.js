@@ -1,4 +1,4 @@
-var coords = [29.4241, -98.4936]; /* use getLng/lat then .toArray later for pin drop*/
+var coords = [29.4241, -98.4936];
 function getWeather() {
     $.ajax('https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=' + coords[0] + '&lon=' + coords[1] + '&exclude=current,hourly,minutely&appid=' + WEATHER_MAP_TOKEN)
         .done(function (resp) {
@@ -19,7 +19,7 @@ function getWeather() {
             // Takes in the index for response daily object and returns the weather description for that index/day
             function weatherDescription(index) {
                 var description = resp.daily[index].weather[0].description;
-                return description;
+                return description[0].toUpperCase() + description.substring(1);
             }
             // Takes in the index for response daily object and returns the date for that index/day
             function dailyDate(index) {
@@ -40,13 +40,23 @@ function getWeather() {
                 var highTemp = Math.round(resp.daily[index].temp.max);
                 var lowTemp = Math.round(resp.daily[index].temp.min);
                 var highAndLowTemps = highTemp + `\xB0F / ` + lowTemp + '\xB0F';
-                return highAndLowTemps;
+                return 'High/Low: ' + highAndLowTemps;
             }
             /// This creates the on page html for weather display and adds the weather info to it
             $('#weather-container').html('');
             for (var i = 1; i <= daysOfWeather; ++i) {
                 $('#weather-container').append('<div id="day-' + i + '" class="weather-daily"></div>')
-                $('#day-' + i + '').html(dailyDate(i) + '<br>' + weatherIcon(i) + '<br>' + highAndLowTemp(i) + '<br>' + chanceOfRain(i) + '<br>' + weatherDescription(i) + '<br>' + humidityLevel(i));
+                $('#day-' + i + '').html(
+                    '<div class="card weather-card">' +
+                    '<div class="card-header font-weight-bolder">' + dailyDate(i) + '</div>' +
+                    '<ul class="list-group">' +
+                    '<li class="list-group-item">' + weatherIcon(i) + '</li>' +
+                    '<li class="list-group-item font-weight-bold">' + highAndLowTemp(i) + '</li>' +
+                    '<li class="list-group-item">' + chanceOfRain(i) + '</li>' +
+                    '<li class="list-group-item">' + weatherDescription(i) + '</li>' +
+                    '<li class="list-group-item">' + humidityLevel(i) + '</li>' +
+                    '</ul>' +
+                    '</div>');
             }
         });
 };
@@ -95,7 +105,7 @@ function updateMarkerPopUpInfo() {
         var arr = results.features;
         var place = arr.find(x => x.id.includes('place') === true);
         marker._popup._content.innerHTML = '<h3>' + place.place_name + '</h3>';
-        // console.log(results);
+        console.log(results);
     })
 }
 
