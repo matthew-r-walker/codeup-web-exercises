@@ -17,11 +17,24 @@ body{
     background-color: #1795d4;
     color: white;
 }
-header {
-    /*background-color: #17A2B8;*/
+.title-head {
+    color: white;
+    font-family: "Bangla MN";
+    font-size: 6em;
+    text-align: center;
+    padding-top: .5em;
+    background: rgba(0, 0, 0, 0.45);
+    text-decoration: underline #1795d4;
 }
-
+.label-bg {
+    background-color: #1795d4;
+    border: solid 1px;
+    border-radius: 5px;
+}
 #weather-container {
-    margin-top: 5em;
+    margin-top: 2em;
     margin-bottom: 2em;
+}
+h5 {
+    text-align: center;
 }
