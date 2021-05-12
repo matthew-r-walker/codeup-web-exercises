@@ -44,8 +44,8 @@ function getWeather() {
             }
             /// This creates the on page html for weather display and adds the weather info to it
             $('#weather-container').html('');
-            for (var i = 1; i <= daysOfWeather; ++i) {
-                $('#weather-container').append('<div id="day-' + i + '" class="weather-daily"></div>')
+            for (var i = 0; i <= daysOfWeather; ++i) {
+                $('#weather-container').append('<div id="day-' + i + '" class="weather-daily flex-shrink-1"></div>')
                 $('#day-' + i + '').html(
                     '<div class="card weather-card">' +
                     '<div class="card-header font-weight-bolder">' + dailyDate(i) + '</div>' +
@@ -62,7 +62,7 @@ function getWeather() {
 };
 getWeather();
 
-var daysOfWeather = 5;
+var daysOfWeather = 4;
 
 $('#select-options').change(function (){
     var selectVal = $('#select-options').val();
@@ -75,7 +75,7 @@ $('#select-options').change(function (){
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 var map = new mapboxgl.Map({
     container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/satellite-streets-v11', // style URL
+    style: 'mapbox://styles/mapbox/dark-v10', // style URL
     center: [-98.49272, 29.42527], // starting position [lng, lat]
     zoom: 8.7 // starting zoom
 });
@@ -86,7 +86,9 @@ var popup = new mapboxgl.Popup()
     .setHTML("<h3>San Antonio, Texas, United States</h3>")
     .setMaxWidth("300px");
 
-var marker = new mapboxgl.Marker()
+var marker = new mapboxgl.Marker({
+    color: '#1795d4'
+})
     .setLngLat([-98.49272, 29.42527])
     .setDraggable(true)
     .setPopup(popup)
@@ -105,14 +107,14 @@ function updateMarkerPopUpInfo() {
         var arr = results.features;
         var place = arr.find(x => x.id.includes('place') === true);
         marker._popup._content.innerHTML = '<h3>' + place.place_name + '</h3>';
-        console.log(results);
+        // console.log(results);
     })
 }
 
 var textInput = '';
 $('button').click(function (){
     textInput = $('#text-input').val();
-    console.log(textInput);
+    // console.log(textInput);
     moveMarkerToSearched();
 })
 
