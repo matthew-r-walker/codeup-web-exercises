@@ -6,9 +6,10 @@ body{
     background-image: url("../img/skyandgrass.jpg");
 }
 .weather-daily {
-    width: 220px;
-    height: 350px;
+    width: 150px;
+    height: 400px;
     text-align: center;
+    box-sizing: content-box;
 }
 .weather-card {
     background-color: #1795d4;
@@ -19,13 +20,26 @@ body{
 }
 .title-head {
     color: white;
-    font-family: "Bangla MN";
-    font-size: 6em;
+    font-family: "Bangla MN", sans-serif;
+    font-size: 5em;
     text-align: center;
     padding-top: .5em;
     background: rgba(0, 0, 0, 0.45);
     text-decoration: underline #1795d4;
     margin-bottom: .3em;
+}
+.grow {
+    transition: all .2s ease-in-out;
+}
+.grow:hover {
+    transform: scale(1.1);
+    z-index: +1;
+}
+.weather-disc {
+    height: 74px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .label-bg {
     background-color: #1795d4;

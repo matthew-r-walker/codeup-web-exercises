@@ -44,7 +44,7 @@ function getWeather() {
             // This loop creates the on page html for weather display and adds the weather info to it.
             $('#weather-container').html('');
             for (var i = 0; i <= daysOfWeather; ++i) {
-                $('#weather-container').append('<div id="day-' + i + '" class="weather-daily"></div>');
+                $('#weather-container').append('<div id="day-' + i + '" class="grow flex-xl-grow-1 weather-daily"></div>');
                 $('#day-' + i + '').html(
                     '<div class="card weather-card">' +
                     '<div class="card-header font-weight-bold">' + dailyDate(i) + '</div>' +
@@ -52,17 +52,17 @@ function getWeather() {
                     '<li class="list-group-item">' + weatherIcon(i) + '</li>' +
                     '<li class="list-group-item font-weight-bold">' + highAndLowTemp(i) + '</li>' +
                     '<li class="list-group-item">' + chanceOfRain(i) + '</li>' +
-                    '<li class="list-group-item">' + weatherDescription(i) + '</li>' +
+                    '<li class="weather-disc list-group-item">' + weatherDescription(i) + '</li>' +
                     '<li class="list-group-item">' + humidityLevel(i) + '</li>' +
                     '</ul>' +
                     '</div>');
             }
         });
 };
+getWeather();
 
-
-// Select drop down allows user to select how many days of weather forecast are displayed.
-var daysOfWeather;
+// Select drop down allows user to select how many days of weather forecast are displayed, 0 indexed.
+var daysOfWeather = 2;
 $('#select-options').change(function (){
     var selectVal = $('#select-options').val();
     daysOfWeather = selectVal;
