@@ -107,6 +107,7 @@ function updateMarkerPopUpInfo() {
         var arr = results.features;
         var place = arr.find(x => x.id.includes('place') === true);
         marker._popup._content.innerHTML = '<h5>' + place.place_name + '</h5>';
+        $('#current-city').html(place.place_name);
     })
 }
 
