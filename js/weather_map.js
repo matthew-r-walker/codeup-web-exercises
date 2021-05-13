@@ -66,7 +66,10 @@ var daysOfWeather = 2;
 $('#select-options').change(function (){
     var selectVal = $('#select-options').val();
     daysOfWeather = selectVal;
-    getWeather();
+    $('#weather-container').fadeOut(1000, function () {
+        getWeather();
+        $('#weather-container').fadeIn(1200);
+    });
 });
 
 // Map box map

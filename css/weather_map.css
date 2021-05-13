@@ -13,6 +13,7 @@ body{
 }
 .weather-card {
     background-color: #1795d4;
+    /*display: none;*/
 }
 .btn-bg {
     background-color: #1795d4;
