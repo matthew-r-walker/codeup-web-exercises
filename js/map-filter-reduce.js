@@ -41,11 +41,27 @@ let emails = users.map(user => user.email);
 
 let usersWithThreeOrMoreLangs = users.filter(user => user.languages.length >= 3);
 
-let totalOfAllUsersYearsOfExp = users.reduce((totalYearsOfExp, user) => {
-   return totalYearsOfExp + user.yearsOfExperience;
-},0);
+// total's default value will be the first item in the array unless set to a value otherwise specified. It's first value is set to 0 in this example.
+// let totalOfAllUsersYearsOfExp = users.reduce((total, user) => {
+//     return total + user.yearsOfExperience;
+// },0);
 
-// let longestUserEmail = users.reduce(() => {
-//
-// });
+
+let totalOfAllUsersYearsOfExp = users.reduce((total, user) => total + user.yearsOfExperience, 0);
+// let totalOfAllUsersYearsOfExp = users.reduce((total, user) => {
+//    return total + user.yearsOfExperience;
+// },0);
+// Average years of experience for users is totalOfAllUsersYearsExp / users.length
+
+
+// let longestUserEmail = emails.reduce((a, b) => a.length > b.length ? a : b);
+
+let longestUserEmail = users.reduce((a, b) => a.length > b.email.length ? a : b.email);
+
+let usersNames = users.reduce((accumulator, user, index, arr) => {
+    index === arr.length -1 ? accumulator += `${user.name}.` : accumulator += `${user.name}, `;
+    return accumulator;
+},'Users names are: ');
+
+
 
